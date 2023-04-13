@@ -1,8 +1,8 @@
 import * as fs from "fs";
 
 export class FileSystem {
-    exists(inputFile: string) {
-        return fs.existsSync(inputFile)
+    exists(file: string) {
+        return fs.existsSync(file)
     }
 
     readContent(inputFile: string): string {
