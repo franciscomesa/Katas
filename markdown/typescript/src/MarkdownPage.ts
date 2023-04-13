@@ -27,7 +27,7 @@ export class MarkdownPage {
 
             const anchoreExpression = text.substring(openingTagPosition, closingTagPosition + closingTag.length)
             const rest = text.substring(closingTagPosition + closingTag.length)
-            const anchor = Anchor.fromMarkdownExpression(anchoreExpression)
+            const anchor = Anchor.fromMarkdown(anchoreExpression)
             anchors.push(anchor)
 
             const results = this.findAnchorsAtPage(rest);
@@ -42,7 +42,14 @@ export class MarkdownPage {
     }
 
     private replaceAnchors(inputContent: string, anchorsDictionary: Record<string, Anchor>): string {
-        throw new Error('Not implemented yet')
+        const anchorKeys = Object.keys(anchorsDictionary)
+
+        anchorKeys.forEach((key) => {
+            const anchor = anchorsDictionary[key]
+            inputContent = inputContent.replace(anchor.toMarkdown(), `${anchor.text} ${key}`)
+        })
+
+        return inputContent;
     }
 
     addFootNotes(text: string, anchorsDictionary: Record<string, Anchor>): string {

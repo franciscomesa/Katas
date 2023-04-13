@@ -3,7 +3,7 @@ export class Anchor {
 
     }
 
-    static fromMarkdownExpression(inputContent: string): Anchor {
+    static fromMarkdown(inputContent: string): Anchor {
         const separator = "](";
         const start = "[".length;
         const visibleText = inputContent.substring(start, inputContent.indexOf(separator))
@@ -16,5 +16,9 @@ export class Anchor {
 
     isEqual(item: Anchor) {
         return this.url === item.url && this.text === item.text;
+    }
+
+    toMarkdown(): string {
+        return `[${this.text}](${this.url})`;
     }
 }

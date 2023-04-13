@@ -2,7 +2,7 @@ import {Anchor} from "../Anchor";
 
 describe('Anchor', () => {
     it('build from markdown expression', () => {
-        const anchor = Anchor.fromMarkdownExpression("[visible text link](url)")
+        const anchor = Anchor.fromMarkdown("[visible text link](url)")
         expect(anchor).toEqual(new Anchor("url", "visible text link"))
     });
 
@@ -15,6 +15,10 @@ describe('Anchor', () => {
             expect(new Anchor('url', 'text').isEqual(new Anchor('a', 'text'))).toBeFalsy()
             expect(new Anchor('url', 'text').isEqual(new Anchor('url', 'a'))).toBeFalsy()
         });
+    });
+
+    it('transform anchor to markdown expression', () => {
+        expect(new Anchor("http://url", "text").toMarkdown()).toBe("[text](http://url)")
     });
 
 });
