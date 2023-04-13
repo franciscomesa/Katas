@@ -1,5 +1,5 @@
 import {FileSystem} from "./filesystem";
-import {MarkdownPage} from "./MarkdownPage";
+import {MarkDownContent, MarkdownPage} from "./MarkdownPage";
 
 export class MarkDownTransformer {
     constructor(private fileSystem: FileSystem = new FileSystem()) {}
@@ -17,7 +17,7 @@ export class MarkDownTransformer {
 
     }
 
-    private turnLinksIntoFooter(inputContent: string): string {
+    private turnLinksIntoFooter(inputContent: string): MarkDownContent {
         return new MarkdownPage(inputContent).moveLinksToFootNotesWithAnchors()
     }
 }

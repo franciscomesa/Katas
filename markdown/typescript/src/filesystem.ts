@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import {MarkDownContent} from "./MarkdownPage";
 
 export class FileSystem {
     exists(filePath: string) {
@@ -9,7 +10,7 @@ export class FileSystem {
         return fs.readFileSync(filePath).toString()
     }
 
-    write(filePath: string, transformedMarkDown: string): void {
-        fs.writeFileSync(filePath, transformedMarkDown)
+    write(filePath: string, content: MarkDownContent): void {
+        fs.writeFileSync(filePath, content)
     }
 }

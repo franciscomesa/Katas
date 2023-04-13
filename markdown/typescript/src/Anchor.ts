@@ -1,15 +1,17 @@
+import {MarkDownContent} from "./MarkdownPage";
+
 export class Anchor {
     constructor(public readonly url: string, public readonly text: string) {
 
     }
 
-    static fromMarkdown(inputContent: string): Anchor {
+    static fromMarkdown(content: MarkDownContent): Anchor {
         const separator = "](";
         const start = "[".length;
-        const visibleText = inputContent.substring(start, inputContent.indexOf(separator))
+        const visibleText = content.substring(start, content.indexOf(separator))
         const closingTag = ")";
-        const end = inputContent.indexOf(closingTag, start);
-        const url = inputContent.substring(inputContent.indexOf(separator) + separator.length, end)
+        const end = content.indexOf(closingTag, start);
+        const url = content.substring(content.indexOf(separator) + separator.length, end)
 
         return new Anchor(url, visibleText)
     }

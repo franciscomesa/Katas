@@ -1,11 +1,13 @@
 import {Anchor} from "./Anchor";
 
+export type MarkDownContent = string
+
 export class MarkdownPage {
     constructor(private readonly inputContent: string) {
 
     }
 
-    moveLinksToFootNotesWithAnchors(): string {
+    moveLinksToFootNotesWithAnchors(): MarkDownContent {
         const anchors = this.findAnchorsAtPage(this.inputContent)
         const createDictionaryFromAnchors = (total: Record<string, Anchor>, current: Anchor, index: number) => {
             return {...total, [`[^anchor${index + 1}]`]: current}
