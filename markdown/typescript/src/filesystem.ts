@@ -1,15 +1,15 @@
 import * as fs from "fs";
 
 export class FileSystem {
-    exists(file: string) {
-        return fs.existsSync(file)
+    exists(filePath: string) {
+        return fs.existsSync(filePath)
     }
 
-    readContent(inputFile: string): string {
-        return fs.readFileSync(inputFile).toString()
+    readContent(filePath: string): string {
+        return fs.readFileSync(filePath).toString()
     }
 
-    write(outputFile: string, transformedMarkDown: string): void {
-        fs.writeFileSync(outputFile, transformedMarkDown)
+    write(filePath: string, transformedMarkDown: string): void {
+        fs.writeFileSync(filePath, transformedMarkDown)
     }
 }
